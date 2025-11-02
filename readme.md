@@ -17,15 +17,18 @@ It allows you to upload PDF documents, build a vector database, and interact wit
 
 ### 1. Clone the repository
 ### 2. Create a Virtual Environment
+```bash
 python -m venv venv
-
+```
 ### 3. Activate the Virtual Environment
+```bash
 For windows: venv\Scripts\activate
 For Mac/Linux: source venv/bin/activate
-
+```
 ### 4. Install Dependencies
+```bash
 pip install -r requirements.txt
-
+```
 ### 5. Add API Key
 Rename .env.example to .env
 
@@ -46,6 +49,8 @@ Extract text and split it into smaller chunks.
 Store embeddings locally in the /vectorstore folder for efficient retrieval.
 
 ### Execution
+```bash
 python ingest_database.py
 python chatbot.py
+```
 

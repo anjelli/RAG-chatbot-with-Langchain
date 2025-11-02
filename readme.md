@@ -1,9 +1,32 @@
-# Chatbot with RAG and LangChain 
+# Chatbot with RAG (Retrieval‐Augmented Generation) & LangChain
 
-This project implements a **Retrieval-Augmented Generation (RAG) chatbot** using **LangChain**, **ChromaDB**, and **Sentence-Transformers** for local embeddings.  
-It allows you to upload PDF documents, build a vector database, and interact with the content using a conversational interface built on **Gradio**.
+This project implements a **RAG chatbot** that answers user questions based on your provided documents. Instead of relying solely on a large language model’s built-in knowledge, the bot first retrieves relevant passages from your knowledge base and then generates responses grounded in that retrieved context.
 
----
+## How It Works
+
+### 1. Load  
+Documents (e.g., PDFs) placed in the `data/` directory are loaded into the ingestion script.  
+### 2. Split  
+Large documents are broken into smaller chunks to fit context window and focus on relevant passages.  
+### 3. Embed  
+Each chunk is converted into a vector (embedding), representing its semantic meaning in a high-dimensional space.  
+### 4. Store  
+The embeddings are stored in a vector database (e.g., Chroma) for efficient similarity search.  
+### 5. Retrieval & Generation  
+When the user asks a question:  
+- The question is embedded and compared against stored chunks to find the most relevant passages.  
+- Those passages are passed—alongside the user’s query and conversation history—to the language model to generate a response grounded in the retrieved context.
+
+## Why RAG?
+
+Traditional chatbots relying solely on LLMs often generate generic or off-topic answers. RAG aligns the model’s output with **your own documents**, making responses more accurate and domain-specific.
+
+## Installation
+
+1. Clone the repo:  
+   ```bash
+   git clone https://github.com/ThomasJanssen-tech/Chatbot-with-RAG-and-LangChain.git
+   cd Chatbot-with-RAG-and-LangChain
 
 ## Features
 - Uses **ChromaDB** for persistent vector storage and retrieval.
@@ -53,4 +76,5 @@ Store embeddings locally in the /vectorstore folder for efficient retrieval.
 python ingest_database.py
 python chatbot.py
 ```
+
 
